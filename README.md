@@ -20,8 +20,8 @@ To build .exe with PyInstaller use the following command:
 ```
 pyinstaller RandomGamePicker.spec
 ```
-> NOTE 1. .spec file was meant to be used with PyInstaller `--onedir` command-line argument. If you want to create a standalone executable, you need to create a separate .spec file.
+> NOTE 1. .spec file was meant to be used with PyInstaller `--onedir` command-line argument. If you want to create a standalone executable using `--onefile`, you'll need to create a separate .spec file.
 
 > NOTE 2. PyInstaller officially supports Python 3.7 and lower, though I build executable with Python 3.9
 
-> NOTE 3. You may want to recompile [bootloader](https://stackoverflow.com/a/52054580/10873426) for PyInstaller.
+> NOTE 3. You may want to recompile a [bootloader](https://stackoverflow.com/a/52054580/10873426) for PyInstaller.

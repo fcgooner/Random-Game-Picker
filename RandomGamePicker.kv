@@ -1,0 +1,222 @@
+#:import Factory kivy.factory.Factory
+
+<HelpPopup@Popup>
+    auto_dismiss: True
+    size_hint: 0.7, 0.82
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    title: ""
+	separator_height: 0
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            id: help_title
+            size: root.width, root.height
+            text_size: root.width*0.93, root.height*0.95
+			text: root.help_text[root.default_picker][0]
+			valign: "top"
+            font_size: 14
+			markup: True
+            
+<AboutPopup@Popup>
+    auto_dismiss: True
+    size_hint: 0.7, 0.5
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    title: ""
+	separator_height: 0
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            id: about_title
+            size: root.width, root.height
+            text_size: root.width*0.93, root.height*0.95
+            text: root.about_text[root.default_picker][0]
+			valign: "top"
+            font_size: 14
+			markup: True
+			on_ref_press:
+				import webbrowser
+				webbrowser.open(args[1])
+            
+<Button>
+	background_normal: ''
+	background_color: (0.54, 0, 1, .25)
+    height: 55
+    width: 313
+	size_hint: (None, None)
+
+<MyLayout>
+
+	canvas.before:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'images/bg.png'
+            
+	FloatLayout:
+		orientation: "vertical"
+		spacing: 20
+		padding: 10
+		size: root.width, root.height
+		
+		Label:
+            # HEADER OF THE APP
+			text: "[color=#8a00ff]GOG GALAXY[/color] RANDOM GAME PICKER"
+			font_name: root.latothin
+			font_size: 32
+			valign: "top"
+			halign: "center"
+			pos_hint: {"top": 0.97}
+			text_size: self.size
+			markup: True
+			
+		Label:
+            # PICKED GAME TITLE
+			id: game_title
+			text: root.picked_game_title
+			font_name: root.latoreg
+			font_size: 25
+			color: 1, 1, 1, 1
+			pos_hint: {"center_x": 0.687, "center_y": 0.63}
+			text_size: 313, 100
+			size: 313, 80
+			valign: "top"
+			halign: "left"
+			multiline: True
+			markup: True
+			
+		AsyncImage:
+            # GAME COVER
+			id: cover_image
+			source: root.picked_game_cover
+			pos_hint: {"center_x": 0.22, "center_y": 0.482}
+			size_hint_x: 0.35
+			
+		Label:
+        # GAME TITLE text
+            id: title_text
+			text: root.localization_dict[root.current_lang][1]
+			font_name: root.latothin
+			font_size: 20
+			size_hint: (None, None)
+			pos_hint: {"right": 0.606, "top": 0.91}
+			color: 1, 1, 1, 0.35
+		
+		GridLayout:
+			cols: 2
+			size: self.width, self.height
+			size_hint: (0.35, 0.2)
+			pos_hint: {"center_x": 0.527, "center_y": 0.485}
+			CheckBox:
+				active: root.show_hidden
+				on_active: root.hidden_checkbox(self, self.active)
+				#background_checkbox_down: "images/checkbox_on.png"
+				#background_checkbox_normal: "images/checkbox_off.png"
+				
+			Label:
+				id: hidden_text
+				text: root.localization_dict[root.current_lang][8]
+				font_name: root.latoreg
+				size_hint: (None, None)
+				font_size: 12
+				color: 1, 1, 1, 0.5
+			
+		Button:
+        # PICK A GAME button
+            id: pick_button
+            text: root.localization_dict[root.current_lang][2]
+		    font_name: root.latoreg
+			pos_hint: {"right": 0.95, "top": 0.43}
+			font_size: root.localization_dict[root.current_lang][4]
+			text_size: None, None
+            color: 1, 1, 1, 0.5
+			on_release: root.pickPress()
+			
+		Button:
+        # VIEW GAME IN GOG button
+            id: open_button
+            text: root.localization_dict[root.current_lang][3]
+			font_name: root.latoreg
+            font_size: root.localization_dict[root.current_lang][5]
+			text_size: None, None
+			pos_hint: {"right": 0.95, "top": 0.274}
+            color: 1, 1, 1, 0.5
+			on_release: root.openPress()
+            
+		Button:
+        # ENGLISH LANGUAGE
+            text: "ENGLISH"
+			font_name: root.latoreg
+            font_size: 13
+			text_size: None, None
+			pos_hint: {"right": 0.77, "top": 0.09}
+            height: 32
+            width: 67 
+            color: 1, 1, 1, 0.3
+			on_release: root.langChange("EN")
+            
+		Button:
+        # UKRAINIAN LANGUAGE
+            text: "УКРАЇНСЬКА"
+			font_name: root.latoreg
+            font_size: 13
+			text_size: None, None
+			pos_hint: {"right": 0.95, "top": 0.09}
+            height: 32
+            width: 95
+            color: 1, 1, 1, 0.3
+			on_release: root.langChange("UA")
+            
+		Button:
+        # HELP
+            id: help_button
+            text: root.localization_dict[root.current_lang][6]
+			font_name: root.latoreg
+            font_size: 13
+			text_size: None, None
+			pos_hint: root.loc_button_pos[root.current_lang][0]
+            height: root.loc_button_size[root.current_lang][0]
+            width: root.loc_button_size[root.current_lang][1]
+            color: 1, 1, 1, 0.3
+            #on_press: Factory.HelpPopup().updatePopup(root.current_lang)
+            on_release:
+				h = Factory.HelpPopup()
+				h.updatePopup(root.current_lang)
+				h.open()
+            
+		Button:
+        # ABOUT
+            id: about_button
+            text: root.localization_dict[root.current_lang][7]
+			font_name: root.latoreg
+            font_size: 13
+			text_size: None, None
+			pos_hint: root.loc_button_pos[root.current_lang][1]
+            height: root.loc_button_size[root.current_lang][0]
+            width: root.loc_button_size[root.current_lang][2]
+            color: 1, 1, 1, 0.3
+            on_release:
+				k = Factory.AboutPopup()
+				k.updateAbout(root.current_lang)
+				k.open()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

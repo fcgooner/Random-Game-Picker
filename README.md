@@ -22,7 +22,7 @@ Basically, this program consists of three parts:
 5. Copy and paste the following command into the Command Propt: `pip install natsort`
 6. Copy and paste the following command into the Command Propt: `pip install pyinstaller`
 7. Open a folder with your unpacked files from Step 1. Hit `Alt`+`D` on your keyboard to highlight what’s in the address bar (or `CTRL`+`L` if `ALT`+'D' is not working) and copy highlighted path in the address bar.
-8. Open the RandomGamePicker.spec file in any text editor and replace three placeholders with your copied path. Don't forget to change `\` to `\\`. Save and close the file.
+8. Open the RandomGamePicker.spec file in any text editor and replace three `[placeholder]` with your copied path. Don't forget to change `\` to `\\`. Save and close the file.
 9. Make sure you are in a folder where RandomGamePicker.spec is located. Hit `Alt`+`D` (or `CTRL`+`L`), type in `cmd` in the address bar and hit `Enter`. This will open the Command Prompt in the current folder.
 10. Type in `pyinstaller RandomGamePicker.spec` and wait while PyInstaller finish to compile the program.
 11. After Step 11 is done, there should be a `dist` folder. Inside it you'll see a `Random Game Picker` folder. This is your application folder. If you want you can move it to any other location.

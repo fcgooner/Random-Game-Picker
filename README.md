@@ -32,6 +32,7 @@ Basically, this program consists of three parts:
 To remove all installed modules during installation Steps, open Windows command-line and run these commands:
 1. `pip uninstall -r requirements.txt`
 2. `pip uninstall -r requirements.txt -y`
+
 To uninstall Python use Control Panel.
 
 ## Additional info

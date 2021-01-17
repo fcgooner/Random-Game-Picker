@@ -154,7 +154,7 @@ class MyLayout(Widget):
 
         global hidden_flag
         game_db = os.getenv('HOMEPATH') + '\AppData\Local\Random Game Picker\GameDB.csv'
-        with open(game_db, 'r') as csv_file:
+        with open(game_db, 'r', encoding='utf-8') as csv_file:
             csv_reader = list(csv.reader(csv_file))
         
         csv_loop = True

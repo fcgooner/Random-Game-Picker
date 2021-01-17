@@ -16,8 +16,8 @@ Basically, this program consists of three parts:
 
 ## HOW TO INSTALL
 1. Download this repository and unpack it to any folder. 
-2. Download and istall [Python 3.1.9 (32bit)](https://www.python.org/downloads/release/python-391/). Dont forget to set a checkbox "Add Python 3.9 to PATH" during installation.
-3. After Python is installed, press `Windows key`+`R` and type in `cmd` to open Windows command-line install kivy using the following command: `pip install kivy`
+2. Download and install [Python 3.1.9 (32bit)](https://www.python.org/downloads/release/python-391/). Don't forget to set a checkbox "Add Python 3.9 to PATH" during installation.
+3. After Python is installed, press `Windows key`+`R` and type in `cmd` to open Windows command-line. Install kivy using the following command: `pip install kivy`
 4. Install natsort module using the following command: `pip install natsort`
 5. Install pyinstaller using the following command: `pip install pyinstaller`
 6. Open a folder with your unpacked files from Step 1.

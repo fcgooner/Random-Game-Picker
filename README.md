@@ -30,7 +30,7 @@ Basically, this program consists of three parts:
 13. Run `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.
 
 To remove all installed modules during installation Steps, open Windows command-line and run these commands:
-1. `pip uninstall -r requirements.txt`
+1. `pip freeze > requirements.txt`
 2. `pip uninstall -r requirements.txt -y`
 
 To uninstall Python use Control Panel.

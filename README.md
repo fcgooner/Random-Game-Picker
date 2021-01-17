@@ -22,7 +22,7 @@ Basically, this program consists of three parts:
 5. Install pyinstaller using the following command: `pip install pyinstaller`
 6. Open a folder with your unpacked files from Step 1.
 7. Hit `Alt`+`D` on your keyboard to highlight what’s in the address bar (or `CTRL`+`L`) and then copy highlighted path.
-8. Open RandomGamePicker.spec file in any text editor and replace three placeholders with your copied path. Don't forget to change `\` to '\\' in your copied path. Save and close the file.
+8. Open RandomGamePicker.spec file in any text editor and replace three placeholders with your copied path. Don't forget to change `\` to `\\` in your copied path. Save and close the file.
 9. Hit `Alt`+`D` (or `CTRL`+`L`), type in `cmd` in address bar and hit `Enter`. This will open Windows command-line in current folder.
 10. In opened window type in `dir` and press `Enter`. You will get a printout of all folders and files inside your current directory. Make sure that the printout has all required files (RandomGamePicker.py, RandomGamePicker.kv etc.)
 11. Type in `pyinstaller RandomGamePicker.spec` and while PyInstaller finish to compile the program.

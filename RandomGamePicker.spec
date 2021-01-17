@@ -6,7 +6,7 @@ block_cipher = None
 
 
 a = Analysis(['RandomGamePicker.py'],
-             pathex=['C:\\Users\\romag\\Downloads\\Random Game Picker\\onedir'],
+             pathex=['[placeholder]'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -25,12 +25,12 @@ exe = EXE(pyz,
           exclude_binaries=True,
           name='RandomGamePicker',
           debug=False,
-          icon=["C:\\Users\\romag\\Downloads\\Random Game Picker\\onedir\\images\\app.ico"],
+          icon=["[placeholder]\\images\\app.ico"],
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           console=False )
-coll = COLLECT(exe, Tree('C:\\Users\\romag\\Downloads\\Random Game Picker\\onedir'),
+coll = COLLECT(exe, Tree('[placeholder]'),
                a.binaries,
                a.zipfiles,
                a.datas,

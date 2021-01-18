@@ -24,6 +24,7 @@ Basically, this program consists of three parts:
 
 ### UNINSTALL PYTHON AND MODULES (OPTIONAL)
 If you want to uninstall all modules installed during installation Steps, open Command Prompt and run: `pip uninstall -y -r <(pip freeze)`
+
 To uninstall Python use Control Panel.
 
 ## Additional info

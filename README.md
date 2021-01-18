@@ -18,22 +18,15 @@ Basically, this program consists of three parts:
 1. Download this repository and unpack it to any folder. 
 2. Download and install [Python 3.1.9 (32bit)](https://www.python.org/downloads/release/python-391/). Don't forget to set a checkbox "Add Python 3.9 to PATH" during installation.
 3. After Python is installed, open the `Start Menu`, type in `cmd` and open the `Command Prompt`.
-4. Copy and paste the following command into the Command Propt: `pip install kivy`
-5. Copy and paste the following command into the Command Propt: `pip install natsort`
-6. Copy and paste the following command into the Command Propt: `pip install pyinstaller`
-7. Open a folder with your unpacked files from Step 1. Hit `Alt`+`D` on your keyboard to highlight what’s in the address bar (or `CTRL`+`L` if `ALT`+'D' is not working) and copy highlighted path in the address bar.
-8. Open the RandomGamePicker.spec file in any text editor and replace three `[placeholder]` with your copied path. Don't forget to change `\` to `\\`. Save and close the file.
-9. Make sure you are in a folder where RandomGamePicker.spec is located. Hit `Alt`+`D` (or `CTRL`+`L`), type in `cmd` in the address bar and hit `Enter`. This will open the Command Prompt in the current folder.
-10. Type in `pyinstaller RandomGamePicker.spec` and wait while PyInstaller finish to compile the program.
-11. After Step 11 is done, there should be a `dist` folder. Inside it you'll see a `Random Game Picker` folder. This is your application folder. If you want you can move it to any other location.
-12. Run the `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.
+4. Run the following command: `pip install -r requirements.txt`. Wait until everything is installed, and then close the Command Prompt window.
+5. Open a folder with your unpacked files from Step 1.
+6. Hit `Alt`+`D` (or `CTRL`+`L`), type in `cmd` in the address bar and hit `Enter`. In the opened Command Prompt windows type in `pyinstaller RandomGamePicker.spec` and wait till PyInstaller finishes compiling the program.
+7. After Step 6 is done, there should be a `dist` folder. Inside it you'll see a `Random Game Picker` folder. This is your compiled program folder. If you want you can move it to any other location.
+8. Run the `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.
 
 ### UNINSTALL PYTHON AND MODULES (OPTIONAL)
-If you want to uninstall Python and all modules installed during installation Steps, open Windows command-line and run these commands:
-1. `pip freeze > requirements.txt`
-2. `pip uninstall -r requirements.txt -y`
-
-> To uninstall Python use Control Panel.
+If you want to uninstall all modules installed during installation Steps, open Command Prompt and run: `pip uninstall -y -r <(pip freeze)`
+To uninstall Python use Control Panel.
 
 ## Additional info
 1. .spec file was meant to be used with PyInstaller `--onedir` command-line argument. If you want to create a standalone executable using `--onefile`, you'll need to create a separate .spec file.

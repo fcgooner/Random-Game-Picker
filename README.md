@@ -17,7 +17,7 @@ Basically, this program consists of three parts:
 ## HOW TO INSTALL
 1. Download and install [Python 3.1.9 (32bit)](https://www.python.org/downloads/release/python-391/). Don't forget to set a checkbox "Add Python 3.9 to PATH" during installation.
 2. Download this repository and unpack it to any folder. 
-3. Open the unpacked folder, hit `Alt`+`D` (or `CTRL`+`L`), type in `cmd` in the address bar and hit `Enter`. Run the following command: `pip install -r requirements.txt`. Wait until everything is installed.
+3. Open the unpacked folder, hit `Alt`+`D` to highlight an address bar (or `CTRL`+`L`), type in `cmd` in the address bar and hit `Enter`. Run the following command: `pip install -r requirements.txt`. Wait until everything is installed.
 4. Run the following command: `pyinstaller RandomGamePicker.spec` and wait till PyInstaller finishes compiling the program.
 5. After previous Step is done, there should be a `dist` folder. Inside it you'll see a `Random Game Picker` folder. This is your compiled program folder. If you want you can move it to any other location.
 6. Run the `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.

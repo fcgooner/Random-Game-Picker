@@ -17,12 +17,11 @@ Basically, this program consists of three parts:
 ## HOW TO INSTALL
 1. Download this repository and unpack it to any folder. 
 2. Download and install [Python 3.1.9 (32bit)](https://www.python.org/downloads/release/python-391/). Don't forget to set a checkbox "Add Python 3.9 to PATH" during installation.
-3. After Python is installed, open the `Start Menu`, type in `cmd` and open the `Command Prompt`.
-4. Run the following command: `pip install -r requirements.txt`. Wait until everything is installed, and then close the Command Prompt window.
-5. Open a folder with your unpacked files from Step 1.
-6. Hit `Alt`+`D` (or `CTRL`+`L`), type in `cmd` in the address bar and hit `Enter`. In the opened Command Prompt windows type in `pyinstaller RandomGamePicker.spec` and wait till PyInstaller finishes compiling the program.
-7. After Step 6 is done, there should be a `dist` folder. Inside it you'll see a `Random Game Picker` folder. This is your compiled program folder. If you want you can move it to any other location.
-8. Run the `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.
+3. Open a folder with your unpacked files from Step 1.
+4. Hit `Alt`+`D` (or `CTRL`+`L`), type in `cmd` in the address bar and hit `Enter`. Run the following command: `pip install -r requirements.txt`. Wait until everything is installed.
+5. Run the following command: `pyinstaller RandomGamePicker.spec` and wait till PyInstaller finishes compiling the program.
+6. After Step 5 is done, there should be a `dist` folder. Inside it you'll see a `Random Game Picker` folder. This is your compiled program folder. If you want you can move it to any other location.
+7. Run the `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.
 
 ### UNINSTALL PYTHON AND MODULES (OPTIONAL)
 If you want to uninstall all modules installed during installation Steps, open Command Prompt and run: `pip uninstall -y -r <(pip freeze)`

@@ -430,7 +430,7 @@ def extractData(args):
             
 def main():
 	defaultDBlocation = 'C:\\ProgramData\\GOG.com\\Galaxy\\storage\\galaxy-2.0.db'
-	def_path = os.getenv('HOMEPATH') + '\AppData\Local\Random Game Picker'
+	def_path = "C:" + os.getenv('HOMEPATH') + '\AppData\Local\Random Game Picker'
 	os.makedirs(def_path, exist_ok=True)
 	game_db_file = def_path + '\\GameDB.csv'
 

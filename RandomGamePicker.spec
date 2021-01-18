@@ -1,12 +1,13 @@
 from kivy_deps import sdl2, glew
-
+import os
 # -*- mode: python ; coding: utf-8 -*-
 
 block_cipher = None
 
+user_path = os.getcwd()
 
 a = Analysis(['RandomGamePicker.py'],
-             pathex=['[placeholder]'],
+             pathex=[user_path],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -25,12 +26,12 @@ exe = EXE(pyz,
           exclude_binaries=True,
           name='RandomGamePicker',
           debug=False,
-          icon=["[placeholder]\\images\\app.ico"],
+          icon=[user_path + "\\images\\app.ico"],
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=False )
-coll = COLLECT(exe, Tree('[placeholder]'),
+          console=True )
+coll = COLLECT(exe, Tree(user_path),
                a.binaries,
                a.zipfiles,
                a.datas,

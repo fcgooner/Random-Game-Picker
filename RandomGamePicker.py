@@ -23,7 +23,7 @@ def_path = 'C:' + os.getenv('HOMEPATH') + '\AppData\Local\Random Game Picker'
 os.makedirs(def_path, exist_ok=True)
 
 #Define params.ini pathfile
-param_file_path = def_path + '\\params.ini'
+param_file_path = def_path + '/params.ini'
 
 #Check if params.ini exists. Create if necessary
 if not os.path.exists(param_file_path):

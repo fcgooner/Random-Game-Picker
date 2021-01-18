@@ -87,7 +87,7 @@ class HelpPopup(Popup):
   C:\ProgramData\GOG.com\Galaxy\storage"""]
     }
     # Update popup windwow after language change
-    def updatePopup(self, language):
+    def update_help_popup(self, language):
         self.ids.help_popup.text = self.help_popup_text_localization[language][0]
 
 # About popup
@@ -113,7 +113,7 @@ class AboutPopup(Popup):
      [ref=https://gist.github.com/maxwellainatchi/794d22c2c24f98d5dc8e6abc7ccc8a92][color=4d41ef]https://gist.github.com/maxwellainatchi[/color][/ref]"""]
     }
     # Update popup windwow after language change
-    def updateAbout(self, language):
+    def update_about_popup(self, language):
         self.ids.about_popup.text = self.about_popup_text_localization[language][0]
 
 # Main class
@@ -122,7 +122,6 @@ class MyLayout(Widget):
     global global_lang
     global hidden_checkbox_active
     # Set local variables
-    # Localization data
     localization = {
         # index 4 is for PICK A GAME button font size
         "UA": ["images/cover_placeholder_ua.png",
@@ -144,6 +143,7 @@ class MyLayout(Widget):
                "ABOUT",
                "INCLUDE HIDDEN GAMES"]
     }
+    
     loc_button_pos = {
         "UA": [
                {"right": 0.204, "top": 0.09},
@@ -154,6 +154,7 @@ class MyLayout(Widget):
                {"right": 0.24, "top": 0.09}
               ]
     }
+    
     loc_button_size = {
         "UA": [32, 96, 118],
         "EN": [32, 46, 58]
@@ -163,14 +164,14 @@ class MyLayout(Widget):
     current_lang = global_lang
     font_latothin = "fonts/Lato-Thin.ttf"
     font_latoreg = "fonts/Lato-Regular.ttf"
-    pick_button_pressed = False
+    include_hidden_games = hidden_checkbox_active
+    pick_button_is_pressed = False
     picked_game_cover = localization[current_lang][0]
     picked_game_title = ""
     picked_game_link = ""
-    include_hidden_games = hidden_checkbox_active
 
     # Behaviour when PICK A RANDOM GAME button is pressed
-    def pickPress(self):
+    def pick_button_pressed(self):
         # import global variables
         global hidden_checkbox_active
         # Save GOG Galaxy games database filepath
@@ -186,13 +187,13 @@ class MyLayout(Widget):
             if chosen_row[2]:
                 # Check if INCLUDE HIDDEN GAMES checkbox is set
                 if hidden_checkbox_active:
-                    csv_loop = self.updateGame(chosen_row)
+                    csv_loop = self.update_game_data(chosen_row)
                 else:
                     if chosen_row[1] == "False":
-                        csv_loop = self.updateGame(chosen_row)
+                        csv_loop = self.update_game_data(chosen_row)
 
     # Update the program main window with picked game data
-    def updateGame(self, game_data):
+    def update_game_data(self, game_data):
         self.picked_game_title = game_data[0]
         self.picked_game_link = game_data[4][2:].split("'")[0]
         if game_data[3]:
@@ -202,23 +203,23 @@ class MyLayout(Widget):
             self.picked_game_cover = self.localization[self.current_lang][0]
             self.cover_present = False
             
-        self.updateTitle(self.picked_game_title)
-        self.updateCover(self.picked_game_cover)
-        self.pick_button_pressed = True
-        #return False
+        self.update_game_title(self.picked_game_title)
+        self.update_game_cover(self.picked_game_cover)
+        self.pick_button_is_pressed = True
 
-    def updateTitle(self, game_title):
+
+    def update_game_title(self, game_title):
         self.ids.game_title.text = game_title
 
 
-    def updateCover(self, game_cover):
+    def update_game_cover(self, game_cover):
         self.ids.cover_image.source = game_cover
         
     # Update the program language    
-    def updateLang(self):
-        if not self.pick_button_pressed:
+    def update_program_localization(self):
+        if not self.pick_button_is_pressed:
             self.ids.cover_image.source = self.localization[self.current_lang][0]  
-        elif self.pick_button_pressed:
+        elif self.pick_button_is_pressed:
             if not self.cover_present:
                 self.ids.cover_image.source = self.localization[self.current_lang][0]
                     
@@ -245,22 +246,17 @@ class MyLayout(Widget):
         self.ids.hidden_text.text = self.localization[self.current_lang][8]
 
     # Behaviour when the VIEW GAME IN GOG GALAXY button is pressed    
-    def openPress(self):
-        self.openGog(self.picked_game_link)
-            
-    
-    def openGog(self, game_link):
-        # Open GOG Galaxy only when a game link exist
-        if game_link:
-            subprocess.run("start goggalaxy://openGameView/" + game_link, shell=True)
+    def view_button_pressed(self):
+        if self.picked_game_link:
+            subprocess.run("start goggalaxy://openGameView/" + self.picked_game_link, shell=True)
 
 
-    def langChange(self, lang_Code):
+    def set_program_language(self, lang_Code):
         global global_lang
         if self.current_lang != lang_Code:
             self.current_lang = lang_Code
             global_lang = lang_Code
-            self.updateLang()
+            self.update_program_localization()
             
     
     def hidden_checkbox(self, instance, value):

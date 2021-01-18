@@ -132,7 +132,7 @@
 			font_size: root.localization[root.current_lang][4]
 			text_size: None, None
             color: 1, 1, 1, 0.5
-			on_release: root.pickPress()
+			on_release: root.pick_button_pressed()
 			
 		Button:
         # VIEW GAME IN GOG button
@@ -143,7 +143,7 @@
 			text_size: None, None
 			pos_hint: {"right": 0.95, "top": 0.274}
             color: 1, 1, 1, 0.5
-			on_release: root.openPress()
+			on_release: root.view_button_pressed()
             
 		Button:
         # ENGLISH LANGUAGE
@@ -155,7 +155,7 @@
             height: 32
             width: 67 
             color: 1, 1, 1, 0.3
-			on_release: root.langChange("EN")
+			on_release: root.set_program_language("EN")
             
 		Button:
         # UKRAINIAN LANGUAGE
@@ -167,7 +167,7 @@
             height: 32
             width: 95
             color: 1, 1, 1, 0.3
-			on_release: root.langChange("UA")
+			on_release: root.set_program_language("UA")
             
 		Button:
         # HELP
@@ -180,10 +180,9 @@
             height: root.loc_button_size[root.current_lang][0]
             width: root.loc_button_size[root.current_lang][1]
             color: 1, 1, 1, 0.3
-            #on_press: Factory.HelpPopup().updatePopup(root.current_lang)
             on_release:
 				h = Factory.HelpPopup()
-				h.updatePopup(root.current_lang)
+				h.update_help_popup(root.current_lang)
 				h.open()
             
 		Button:
@@ -199,7 +198,7 @@
             color: 1, 1, 1, 0.3
             on_release:
 				k = Factory.AboutPopup()
-				k.updateAbout(root.current_lang)
+				k.pick_button_pressed(root.current_lang)
 				k.open()
 
 

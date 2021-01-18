@@ -23,7 +23,7 @@ Basically, this program consists of three parts:
 6. Run the `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.
 
 ### UNINSTALL PYTHON AND MODULES (OPTIONAL)
-If you want to uninstall all modules installed during installation Steps, open Command Prompt and run: `pip uninstall -y -r <(pip freeze)`
+If you want to uninstall all modules installed during installation Steps, open Command Prompt in folder from Step 2 and run: `pip uninstall -r requirements.txt -y`
 
 To uninstall Python use Control Panel.
 

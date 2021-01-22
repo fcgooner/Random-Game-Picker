@@ -1,41 +1,48 @@
 #:import Factory kivy.factory.Factory
 
 <HelpPopup@Popup>
-    auto_dismiss: True
-    size_hint: 0.7, 0.82
-    pos_hint: {"center_x": 0.5, "center_y": 0.5}
     title: ""
+    auto_dismiss: True
+    size_hint: 0.7, 0.9
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
 	separator_height: 0
+    background_normal: ''
+    background_color: (0.5, 0.5, 1, .85)
     
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
         Label:
             id: help_popup
+			text: root.help_popup_text_localization[root.help_popup_lang][0]
+            font_size: root.help_element_sizes[root.app_help_size]["popup_fontsize"]
             size: root.width, root.height
             text_size: root.width*0.93, root.height*0.95
-			text: root.help_popup_text_localization[root.help_popup_lang][0]
 			valign: "top"
-            font_size: 14
 			markup: True
+            on_ref_press:
+				import webbrowser
+				webbrowser.open(args[1])
             
 <AboutPopup@Popup>
-    auto_dismiss: True
-    size_hint: 0.7, 0.5
-    pos_hint: {"center_x": 0.5, "center_y": 0.5}
     title: ""
+    auto_dismiss: True
+    size_hint: 0.7, 0.65
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
 	separator_height: 0
+    background_normal: ''
+    background_color: (0.54, 0.5, 1, .75)
     
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
         Label:
             id: about_popup
+            text: root.about_popup_text_localization[root.about_popup_lang][0]
+            font_size: root.about_element_sizes[root.app_about_size]["popup_fontsize"]
             size: root.width, root.height
             text_size: root.width*0.93, root.height*0.95
-            text: root.about_popup_text_localization[root.about_popup_lang][0]
 			valign: "top"
-            font_size: 14
 			markup: True
 			on_ref_press:
 				import webbrowser
@@ -43,13 +50,10 @@
             
 <Button>
 	background_normal: ''
-	background_color: (0.54, 0, 1, .25)
-    height: 55
-    width: 313
-	size_hint: (None, None)
+	background_color: (0.25, 0, 0.5, 1)
+    color: 1, 1, 1, 0.5
 
 <MyLayout>
-
 	canvas.before:
 		Rectangle:
 			pos: self.pos
@@ -58,33 +62,41 @@
             
 	FloatLayout:
 		orientation: "vertical"
-		spacing: 20
-		padding: 10
 		size: root.width, root.height
 		
 		Label:
             # HEADER OF THE APP
 			text: "[color=#8a00ff]GOG GALAXY[/color] RANDOM GAME PICKER"
 			font_name: root.font_latothin
-			font_size: 32
+			font_size: root.element_sizes[root.app_size]["header_fontsize"]
+			text_size: self.size
 			valign: "top"
 			halign: "center"
-			pos_hint: {"top": 0.97}
-			text_size: self.size
+			pos_hint: {"top": 0.99}
 			markup: True
+            
+		Label:
+        # pre title text
+            id: title_text
+			text: root.localization[root.current_lang]["pre_title_text"]
+			font_name: root.font_latoreg
+			font_size: root.element_sizes[root.app_size]["pretitle_fontsize"]
+			color: 1, 1, 1, 0.25
+			size_hint: (None, None)
+			text_size: root.element_sizes[root.app_size]["pretitle_textsize"]
+            pos_hint: {"center_x": 0.522, "center_y": 0.83}
 			
 		Label:
             # PICKED GAME TITLE
 			id: game_title
 			text: root.picked_game_title
 			font_name: root.font_latoreg
-			font_size: 25
+			font_size: root.element_sizes[root.app_size]["title_fontsize"]
+			text_size: root.element_sizes[root.app_size]["title_textsize"]
 			color: 1, 1, 1, 1
-			pos_hint: {"center_x": 0.687, "center_y": 0.63}
-			text_size: 313, 100
-			size: 313, 80
 			valign: "top"
 			halign: "left"
+			pos_hint: {"center_x": 0.705, "center_y": 0.69}
 			multiline: True
 			markup: True
 			
@@ -92,129 +104,136 @@
             # GAME COVER
 			id: cover_image
 			source: root.picked_game_cover
-			pos_hint: {"center_x": 0.22, "center_y": 0.482}
-			size_hint_x: 0.35
-			
-		Label:
-        # GAME TITLE text
-            id: title_text
-			text: root.localization[root.current_lang][1]
-			font_name: root.font_latothin
-			font_size: 20
-			size_hint: (None, None)
-			pos_hint: {"right": 0.606, "top": 0.91}
-			color: 1, 1, 1, 0.35
-		
-		GridLayout:
-			cols: 2
-			size: self.width, self.height
-			size_hint: (0.35, 0.2)
-			pos_hint: {"center_x": 0.527, "center_y": 0.485}
+			pos_hint: {"center_x": 0.22, "center_y": 0.5}
+			size_hint: (0.73, 0.73)
             
-			CheckBox:
-				active: root.include_hidden_games
-				on_active: root.hidden_checkbox(self, self.active)
-				
-			Label:
-				id: hidden_text
-				text: root.localization[root.current_lang][8]
-				font_name: root.font_latoreg
-				size_hint: (None, None)
-				font_size: 12
-				color: 1, 1, 1, 0.5
+		Label:
+        # exclude text input title
+            id: exclude_input
+			text: root.localization[root.current_lang]["input_exclude_title"]
+			font_name: root.font_latoreg
+			font_size: root.element_sizes[root.app_size]["exc_inc_text_fontsize"]
+            text_size: root.element_sizes[root.app_size]["exc_inc_textsize"]
+			color: 1, 1, 1, 0.35
+            pos_hint: {"center_x": 0.729, "center_y": 0.555}
+            
+        TextInput:
+            id: exclude_tags
+            text: root.tags_excluded
+            font_size: root.element_sizes[root.app_size]["exc_inc_input_fontsize"]
+            font_name: root.font_latoreg
+            size_hint: (0.549, 0.055)
+            hailgn: "left"
+            pos_hint: {"x": 0.433, "center_y": 0.485}
+            background_color: (0.7, 0.2, 1, 0.25)
+            foreground_color: 1, 1, 1, 0.35
+            multiline: False
+            on_text_validate: root.update_excluded_tags(exclude_tags.text)
+            
+		Label:
+        # include text input title
+            id: include_input
+			text: root.localization[root.current_lang]["input_include_title"]
+			font_name: root.font_latoreg
+			font_size: root.element_sizes[root.app_size]["exc_inc_text_fontsize"]
+            text_size: root.element_sizes[root.app_size]["exc_inc_textsize"]
+			color: 1, 1, 1, 0.35
+            pos_hint: {"center_x": 0.729, "center_y": 0.455}
+            
+        TextInput:
+            id: include_tags
+            text: root.tags_included
+            font_size: root.element_sizes[root.app_size]["exc_inc_input_fontsize"]
+            font_name: root.font_latoreg
+            size_hint: (0.549, 0.055)
+            hailgn: "left"
+            pos_hint: {"x": 0.433, "center_y": 0.385}
+            background_color: (0.7, 0.2, 1, 0.25)
+            foreground_color: 1, 1, 1, 0.35
+            multiline: False
+            on_text_validate: root.update_included_tags(include_tags.text)
+		
+		CheckBox:
+			active: root.include_hidden_games
+            size_hint: (0.03, 0.03)
+            pos_hint: root.element_sizes[root.app_size]["checkbox_pos"]
+			on_active: root.hidden_checkbox(self, self.active)
+                				
+		Label:
+			id: hidden_text
+			text: root.localization[root.current_lang]["hidden_checkbox_text"]
+			font_name: root.font_latoreg
+			font_size: root.element_sizes[root.app_size]["checkbox_fontsize"]
+			text_size: root.element_sizes[root.app_size]["hidden_text_size"]
+			color: 1, 1, 1, 0.35
+			pos_hint: {"center_x": 0.703, "center_y": 0.331}
 			
 		Button:
         # PICK A GAME button
             id: pick_button
-            text: root.localization[root.current_lang][2]
+            background_color: (0.54, 0, 1, .25)
+            text: root.localization[root.current_lang]["pick_button_text"]
 		    font_name: root.font_latoreg
-			pos_hint: {"right": 0.95, "top": 0.43}
-			font_size: root.localization[root.current_lang][4]
-			text_size: None, None
-            color: 1, 1, 1, 0.5
+			font_size: root.element_sizes[root.app_size]["pick_button_fontsize"]
+            size_hint: (0.545, 0.07)
+			pos_hint: {"x": 0.434, "top": 0.295}
 			on_release: root.pick_button_pressed()
 			
 		Button:
         # VIEW GAME IN GOG button
             id: open_button
-            text: root.localization[root.current_lang][3]
+            background_color: (0.54, 0, 1, .25)
+            text: root.localization[root.current_lang]["view_button_text"]
 			font_name: root.font_latoreg
-            font_size: root.localization[root.current_lang][5]
-			text_size: None, None
-			pos_hint: {"right": 0.95, "top": 0.274}
-            color: 1, 1, 1, 0.5
+            font_size: root.element_sizes[root.app_size]["view_button_fontsize"]
+            size_hint: (0.545, 0.07)
+			pos_hint: {"x": 0.434, "top": 0.204}
 			on_release: root.view_button_pressed()
+        
+        Spinner:
+            id: language_spinner
+            background_color: (0.54, 0, 1, 0.25)
+            text: root.localization[root.current_lang]["spinner_text"]
+            font_size: root.element_sizes[root.app_size]["spinner_fontsize"]
+            size_hint: (0.13, 0.07)
+            pos_hint: {"right": 0.978, "top": 0.09}
+            values: "UA", "EN"
+            on_text: root.set_program_language(language_spinner.text)
             
-		Button:
-        # ENGLISH LANGUAGE
-            text: "ENGLISH"
-			font_name: root.font_latoreg
-            font_size: 13
-			text_size: None, None
-			pos_hint: {"right": 0.77, "top": 0.09}
-            height: 32
-            width: 67 
-            color: 1, 1, 1, 0.3
-			on_release: root.set_program_language("EN")
-            
-		Button:
-        # UKRAINIAN LANGUAGE
-            text: "УКРАЇНСЬКА"
-			font_name: root.font_latoreg
-            font_size: 13
-			text_size: None, None
-			pos_hint: {"right": 0.95, "top": 0.09}
-            height: 32
-            width: 95
-            color: 1, 1, 1, 0.3
-			on_release: root.set_program_language("UA")
+        Spinner:
+            id: windows_size_spinner
+            background_color: (0.54, 0, 1, 0.25)
+            text: root.localization[root.current_lang]["spinner_window_text"]
+            font_size: root.element_sizes[root.app_size]["spinner_fontsize"]
+            size_hint: (0.13, 0.07)
+            pos_hint: {"right": 0.832, "top": 0.09}
+            values: root.localization[root.current_lang]["regular_window"], root.localization[root.current_lang]["small_window"]
+            on_text: root.change_window_size(windows_size_spinner.text)
             
 		Button:
         # HELP
             id: help_button
-            text: root.localization[root.current_lang][6]
+            background_color: (0.54, 0, 1, .5)
+            text: root.localization[root.current_lang]["help_button_text"]
 			font_name: root.font_latoreg
-            font_size: 13
-			text_size: None, None
-			pos_hint: root.loc_button_pos[root.current_lang][0]
-            height: root.loc_button_size[root.current_lang][0]
-            width: root.loc_button_size[root.current_lang][1]
-            color: 1, 1, 1, 0.3
+            font_size: root.element_sizes[root.app_size]["help_fontsize"]
+            size_hint: (0.15, 0.07)
+			pos_hint: {"right": 0.171, "top": 0.09}
             on_release:
-				h = Factory.HelpPopup()
-				h.update_help_popup(root.current_lang)
-				h.open()
+				help = Factory.HelpPopup()
+				help.update_help_popup(root.current_lang)
+				help.open()
             
 		Button:
         # ABOUT
             id: about_button
-            text: root.localization[root.current_lang][7]
+            background_color: (0.54, 0, 1, .5)
+            text: root.localization[root.current_lang]["about_button_text"]
 			font_name: root.font_latoreg
-            font_size: 13
-			text_size: None, None
-			pos_hint: root.loc_button_pos[root.current_lang][1]
-            height: root.loc_button_size[root.current_lang][0]
-            width: root.loc_button_size[root.current_lang][2]
-            color: 1, 1, 1, 0.3
+            font_size: root.element_sizes[root.app_size]["about_fontsize"]
+            size_hint: (0.15, 0.07)
+			pos_hint: {"right": 0.34, "top": 0.09}
             on_release:
-				k = Factory.AboutPopup()
-				k.pick_button_pressed(root.current_lang)
-				k.open()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
+				about = Factory.AboutPopup()
+				about.update_about_popup(root.current_lang)
+				about.open()

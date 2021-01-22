@@ -9,7 +9,7 @@ Update - Version 1.2 (22.01.2021)
 
 ============================================================================================
 
-Don't know what game to play next? Let Random Game Picker to decide that for you!
+**Don't know what game to play next? Let Random Game Picker to decide that for you!**<br>
 Random Game Picker picks a random game from your GOG Galaxy library.
 
 Basically, this program consists of three parts:
@@ -38,11 +38,10 @@ Basically, this program consists of three parts:
 6. Run the `Random Game Picker.exe` file inside `Random Game Picker` folder to launch the program.
 
 ### UNINSTALL PYTHON AND MODULES (OPTIONAL)
-If you want to uninstall all modules installed during installation Steps, open Command Prompt in folder from Step 2 and run: `pip uninstall -r requirements.txt -y`
-
+If you want to uninstall all modules installed during installation Steps, open Command Prompt in folder from Step 2 and run: `pip uninstall -r requirements.txt -y`<br>
 To uninstall Python use Control Panel.
 
 ## Additional info
-1. .spec file was meant to be used with PyInstaller `--onedir` command-line argument. If you want to create a standalone executable using `--onefile` argument, you'll need to create a different .spec file.
+1. The `.spec` file was meant to be used with PyInstaller `--onedir` command-line argument. If you want to create a standalone executable using `--onefile` argument, you'll need to create a different `.spec` file.
 2. PyInstaller officially supports Python 3.7 and lower, though I built an executable with Python 3.9
 3. You may want to recompile a [bootloader](https://stackoverflow.com/a/52054580/10873426) for PyInstaller.

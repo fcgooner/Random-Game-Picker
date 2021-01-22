@@ -7,9 +7,10 @@ Update - Version 1.2 (22.01.2021)
 - Two pre-defined window resolutions added
 - Slightly improved randomizer: the program will not pick the same game more than once during one cycle.
 
-============================================================================================================================================================================
+============================================================================================
 
-When you don't know what game you want to play this GUI program can help you to pick a random game from your GOG Galaxy library.
+Don't know what game to play next? Let Random Game Picker to decide that for you!
+Random Game Picker picks a random game from your GOG Galaxy library.
 
 Basically, this program consists of three parts:
 * .py script that generates .csv file from GOG Galaxy database file
